@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { PunnettSquare } from "@/components/PunnettSquare";
@@ -44,7 +44,7 @@ function PredictorPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { pair } = useLastPair();
-  const saved = useRef<string | null>(null);
+
 
   const result = useMemo(
     () => predict(pair?.user ?? "AS", pair?.partner ?? "AS"),
@@ -52,7 +52,7 @@ function PredictorPage() {
   );
 
   // Saving happens on the Home screen when a prediction is requested.
-  void saved;
+
   void user;
   void supabase;
 
