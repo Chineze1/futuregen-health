@@ -45,11 +45,11 @@ function NotificationsPage() {
     },
   });
 
-  async function update(key: string, value: boolean) {
+  async function update(key: (typeof FIELDS)[number]["key"], value: boolean) {
     if (!user) return;
     const { error } = await supabase
       .from("notification_settings")
-      .upsert({ user_id: user.id, [key]: value, updated_at: new Date().toISOString() });
+      .upsert({ user_id: user.id, updated_at: new Date().toISOString(), [key]: value } as never);
     if (error) {
       toast.error("Could not save that setting");
       return;
