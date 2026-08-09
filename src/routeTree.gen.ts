@@ -10,33 +10,184 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as PredictorRouteImport } from './routes/predictor'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ShareRouteImport } from './routes/share'
+import { Route as ProfileIndexRouteImport } from './routes/profile.index'
+import { Route as ProfileAboutRouteImport } from './routes/profile.about'
+import { Route as ProfileHelpRouteImport } from './routes/profile.help'
+import { Route as ProfileHistoryRouteImport } from './routes/profile.history'
+import { Route as ProfileNotificationsRouteImport } from './routes/profile.notifications'
+import { Route as ProfileRateRouteImport } from './routes/profile.rate'
+import { Route as ProfileSettingsRouteImport } from './routes/profile.settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PredictorRoute = PredictorRouteImport.update({
+  id: '/predictor',
+  path: '/predictor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShareRoute = ShareRouteImport.update({
+  id: '/share',
+  path: '/share',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileIndexRoute = ProfileIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileAboutRoute = ProfileAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileHelpRoute = ProfileHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileHistoryRoute = ProfileHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileNotificationsRoute = ProfileNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileRateRoute = ProfileRateRouteImport.update({
+  id: '/rate',
+  path: '/rate',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileSettingsRoute = ProfileSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProfileRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/learn': typeof LearnRoute
+  '/predictor': typeof PredictorRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/share': typeof ShareRoute
+  '/profile/about': typeof ProfileAboutRoute
+  '/profile/help': typeof ProfileHelpRoute
+  '/profile/history': typeof ProfileHistoryRoute
+  '/profile/notifications': typeof ProfileNotificationsRoute
+  '/profile/rate': typeof ProfileRateRoute
+  '/profile/settings': typeof ProfileSettingsRoute
+  '/profile/': typeof ProfileIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/learn': typeof LearnRoute
+  '/predictor': typeof PredictorRoute
+  '/share': typeof ShareRoute
+  '/profile/about': typeof ProfileAboutRoute
+  '/profile/help': typeof ProfileHelpRoute
+  '/profile/history': typeof ProfileHistoryRoute
+  '/profile/notifications': typeof ProfileNotificationsRoute
+  '/profile/rate': typeof ProfileRateRoute
+  '/profile/settings': typeof ProfileSettingsRoute
+  '/profile': typeof ProfileIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/learn': typeof LearnRoute
+  '/predictor': typeof PredictorRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/share': typeof ShareRoute
+  '/profile/about': typeof ProfileAboutRoute
+  '/profile/help': typeof ProfileHelpRoute
+  '/profile/history': typeof ProfileHistoryRoute
+  '/profile/notifications': typeof ProfileNotificationsRoute
+  '/profile/rate': typeof ProfileRateRoute
+  '/profile/settings': typeof ProfileSettingsRoute
+  '/profile/': typeof ProfileIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/learn'
+    | '/predictor'
+    | '/profile'
+    | '/share'
+    | '/profile/about'
+    | '/profile/help'
+    | '/profile/history'
+    | '/profile/notifications'
+    | '/profile/rate'
+    | '/profile/settings'
+    | '/profile/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/learn'
+    | '/predictor'
+    | '/share'
+    | '/profile/about'
+    | '/profile/help'
+    | '/profile/history'
+    | '/profile/notifications'
+    | '/profile/rate'
+    | '/profile/settings'
+    | '/profile'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/learn'
+    | '/predictor'
+    | '/profile'
+    | '/share'
+    | '/profile/about'
+    | '/profile/help'
+    | '/profile/history'
+    | '/profile/notifications'
+    | '/profile/rate'
+    | '/profile/settings'
+    | '/profile/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  LearnRoute: typeof LearnRoute
+  PredictorRoute: typeof PredictorRoute
+  ProfileRoute: typeof ProfileRouteWithChildren
+  ShareRoute: typeof ShareRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +199,124 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/predictor': {
+      id: '/predictor'
+      path: '/predictor'
+      fullPath: '/predictor'
+      preLoaderRoute: typeof PredictorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/share': {
+      id: '/share'
+      path: '/share'
+      fullPath: '/share'
+      preLoaderRoute: typeof ShareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/': {
+      id: '/profile/'
+      path: '/'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof ProfileIndexRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/about': {
+      id: '/profile/about'
+      path: '/about'
+      fullPath: '/profile/about'
+      preLoaderRoute: typeof ProfileAboutRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/help': {
+      id: '/profile/help'
+      path: '/help'
+      fullPath: '/profile/help'
+      preLoaderRoute: typeof ProfileHelpRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/history': {
+      id: '/profile/history'
+      path: '/history'
+      fullPath: '/profile/history'
+      preLoaderRoute: typeof ProfileHistoryRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/notifications': {
+      id: '/profile/notifications'
+      path: '/notifications'
+      fullPath: '/profile/notifications'
+      preLoaderRoute: typeof ProfileNotificationsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/rate': {
+      id: '/profile/rate'
+      path: '/rate'
+      fullPath: '/profile/rate'
+      preLoaderRoute: typeof ProfileRateRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/settings': {
+      id: '/profile/settings'
+      path: '/settings'
+      fullPath: '/profile/settings'
+      preLoaderRoute: typeof ProfileSettingsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
   }
 }
 
+interface ProfileRouteChildren {
+  ProfileAboutRoute: typeof ProfileAboutRoute
+  ProfileHelpRoute: typeof ProfileHelpRoute
+  ProfileHistoryRoute: typeof ProfileHistoryRoute
+  ProfileNotificationsRoute: typeof ProfileNotificationsRoute
+  ProfileRateRoute: typeof ProfileRateRoute
+  ProfileSettingsRoute: typeof ProfileSettingsRoute
+  ProfileIndexRoute: typeof ProfileIndexRoute
+}
+
+const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileAboutRoute: ProfileAboutRoute,
+  ProfileHelpRoute: ProfileHelpRoute,
+  ProfileHistoryRoute: ProfileHistoryRoute,
+  ProfileNotificationsRoute: ProfileNotificationsRoute,
+  ProfileRateRoute: ProfileRateRoute,
+  ProfileSettingsRoute: ProfileSettingsRoute,
+  ProfileIndexRoute: ProfileIndexRoute,
+}
+
+const ProfileRouteWithChildren =
+  ProfileRoute._addFileChildren(ProfileRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  LearnRoute: LearnRoute,
+  PredictorRoute: PredictorRoute,
+  ProfileRoute: ProfileRouteWithChildren,
+  ShareRoute: ShareRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
