@@ -51,21 +51,11 @@ function PredictorPage() {
     [pair?.user, pair?.partner],
   );
 
-  useEffect(() => {
-    if (!user || !pair) return;
-    const key = `${pair.user}-${pair.partner}`;
-    if (saved.current === key) return;
-    saved.current = key;
-    void supabase.from("predictions").insert({
-      user_id: user.id,
-      user_genotype: result.user,
-      partner_genotype: result.partner,
-      aa_percent: result.percentages.AA,
-      as_percent: result.percentages.AS,
-      ss_percent: result.percentages.SS,
-      risk_level: result.risk,
-    });
-  }, [user, pair, result]);
+  // Saving happens on the Home screen when a prediction is requested.
+  void saved;
+  void user;
+  void supabase;
+
 
   return (
     <div className="app-shell">
