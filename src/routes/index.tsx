@@ -9,7 +9,7 @@ import { RequireAuth } from "@/components/RequireAuth";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
-import type { Genotype } from "@/lib/genetics";
+import { predict, type Genotype } from "@/lib/genetics";
 import { savePair, readPair } from "@/lib/prediction-store";
 
 export const Route = createFileRoute("/")({
@@ -93,6 +93,18 @@ function HomePage() {
           className="h-13 w-full rounded-2xl py-6 text-base font-semibold"
           onClick={() => {
             savePair({ user: userGenotype, partner: partnerGenotype });
+            const outcome = predict(userGenotype, partnerGenotype);
+            if (user) {
+              void supabase.from("predictions").insert({
+                user_id: user.id,
+                user_genotype: outcome.user,
+                partner_genotype: outcome.partner,
+                aa_percent: outcome.percentages.AA,
+                as_percent: outcome.percentages.AS,
+                ss_percent: outcome.percentages.SS,
+                risk_level: outcome.risk,
+              });
+            }
             navigate({ to: "/predictor" });
           }}
         >
