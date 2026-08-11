@@ -60,6 +60,7 @@ function ProfilePage() {
   });
 
   const name = profile?.full_name || user?.email?.split("@")[0] || "Friend";
+  const username = profile?.username ? `@${profile.username}` : "";
 
   return (
     <div className="app-shell">
@@ -73,6 +74,7 @@ function ProfilePage() {
         </Avatar>
         <div className="min-w-0">
           <h2 className="truncate text-xl font-semibold">{name}</h2>
+          {username ? <p className="text-sm text-muted-foreground">{username}</p> : null}
           <p className="text-sm text-muted-foreground">Stay informed, stay protected.</p>
           {profile?.genotype ? (
             <p className="mt-1 text-xs font-semibold text-primary">
