@@ -80,12 +80,16 @@ function AuthPage() {
           toast.error("Passwords do not match");
           return;
         }
+        if (!username.trim()) {
+          toast.error("Username is required");
+          return;
+        }
         const { error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             emailRedirectTo: window.location.origin,
-            data: { full_name: fullName },
+            data: { full_name: fullName, username: username.trim() },
           },
         });
         if (error) throw error;
