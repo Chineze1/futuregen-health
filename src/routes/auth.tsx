@@ -187,6 +187,19 @@ function AuthPage() {
             </div>
           ) : null}
 
+          {mode === "signup" ? (
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="johnsmith"
+                required
+              />
+            </div>
+          ) : null}
+
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
