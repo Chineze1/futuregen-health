@@ -276,6 +276,8 @@ function AuthPage() {
             {mode === "login" ? "Sign in with Google" : "Sign up with Google"}
           </Button>
         </form>
+
+        <AppFooter />
       </div>
     </div>
   );
