@@ -131,6 +131,7 @@ function HomePage() {
       </section>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
