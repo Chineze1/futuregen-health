@@ -121,6 +121,7 @@ function LearnPage() {
       )}
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
