@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as LearnRouteImport } from './routes/learn'
+import { Route as OauthCallbackRouteImport } from './routes/oauth-callback'
 import { Route as PredictorRouteImport } from './routes/predictor'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ShareRouteImport } from './routes/share'
@@ -36,6 +37,11 @@ const AuthRoute = AuthRouteImport.update({
 const LearnRoute = LearnRouteImport.update({
   id: '/learn',
   path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OauthCallbackRoute = OauthCallbackRouteImport.update({
+  id: '/oauth-callback',
+  path: '/oauth-callback',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PredictorRoute = PredictorRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/learn': typeof LearnRoute
+  '/oauth-callback': typeof OauthCallbackRoute
   '/predictor': typeof PredictorRoute
   '/profile': typeof ProfileRouteWithChildren
   '/share': typeof ShareRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/learn': typeof LearnRoute
+  '/oauth-callback': typeof OauthCallbackRoute
   '/predictor': typeof PredictorRoute
   '/share': typeof ShareRoute
   '/profile/about': typeof ProfileAboutRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/learn': typeof LearnRoute
+  '/oauth-callback': typeof OauthCallbackRoute
   '/predictor': typeof PredictorRoute
   '/profile': typeof ProfileRouteWithChildren
   '/share': typeof ShareRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/learn'
+    | '/oauth-callback'
     | '/predictor'
     | '/profile'
     | '/share'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/learn'
+    | '/oauth-callback'
     | '/predictor'
     | '/share'
     | '/profile/about'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/learn'
+    | '/oauth-callback'
     | '/predictor'
     | '/profile'
     | '/share'
@@ -185,6 +197,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   LearnRoute: typeof LearnRoute
+  OauthCallbackRoute: typeof OauthCallbackRoute
   PredictorRoute: typeof PredictorRoute
   ProfileRoute: typeof ProfileRouteWithChildren
   ShareRoute: typeof ShareRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       path: '/learn'
       fullPath: '/learn'
       preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/oauth-callback': {
+      id: '/oauth-callback'
+      path: '/oauth-callback'
+      fullPath: '/oauth-callback'
+      preLoaderRoute: typeof OauthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/predictor': {
@@ -313,6 +333,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   LearnRoute: LearnRoute,
+  OauthCallbackRoute: OauthCallbackRoute,
   PredictorRoute: PredictorRoute,
   ProfileRoute: ProfileRouteWithChildren,
   ShareRoute: ShareRoute,
@@ -320,13 +341,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
