@@ -41,6 +41,7 @@ function SettingsPage() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("female");
   const [partnerGender, setPartnerGender] = useState("male");
