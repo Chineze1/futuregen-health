@@ -78,6 +78,7 @@ function SettingsPage() {
       .from("profiles")
       .update({
         full_name: fullName,
+        username: username.trim() || null,
         email,
         gender,
         partner_gender: partnerGender,
