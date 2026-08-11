@@ -52,7 +52,7 @@ function ProfilePage() {
     queryFn: async () => {
       const { data } = await supabase
         .from("profiles")
-        .select("full_name, genotype")
+        .select("full_name, username, genotype")
         .eq("id", user!.id)
         .maybeSingle();
       return data;
