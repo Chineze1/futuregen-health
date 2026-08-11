@@ -113,6 +113,7 @@ function PredictorPage() {
       </div>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
