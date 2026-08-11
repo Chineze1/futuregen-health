@@ -166,6 +166,7 @@ function SharePage() {
       </section>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
