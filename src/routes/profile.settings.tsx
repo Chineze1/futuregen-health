@@ -64,6 +64,7 @@ function SettingsPage() {
   useEffect(() => {
     if (!profile) return;
     setFullName(profile.full_name ?? "");
+    setUsername(profile.username ?? "");
     setEmail(profile.email || user?.email || "");
     setGender(profile.gender ?? "female");
     setPartnerGender(profile.partner_gender ?? "male");
