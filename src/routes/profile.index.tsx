@@ -10,6 +10,7 @@ import {
   Settings,
   Star,
 } from "lucide-react";
+import { AppFooter } from "@/components/AppFooter";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
