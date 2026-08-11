@@ -85,6 +85,7 @@ function RatePage() {
       </section>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
