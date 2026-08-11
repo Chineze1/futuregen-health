@@ -63,6 +63,7 @@ function HelpPage() {
       </Accordion>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
