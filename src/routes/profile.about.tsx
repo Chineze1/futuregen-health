@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AppFooter } from "@/components/AppFooter";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 
@@ -49,6 +50,7 @@ function AboutPage() {
       </div>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }

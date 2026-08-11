@@ -79,6 +79,7 @@ function HistoryPage() {
       )}
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
