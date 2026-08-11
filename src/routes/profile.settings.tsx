@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { AppFooter } from "@/components/AppFooter";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
@@ -40,6 +41,7 @@ function SettingsPage() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("female");
   const [partnerGender, setPartnerGender] = useState("male");
@@ -62,6 +64,7 @@ function SettingsPage() {
   useEffect(() => {
     if (!profile) return;
     setFullName(profile.full_name ?? "");
+    setUsername(profile.username ?? "");
     setEmail(profile.email || user?.email || "");
     setGender(profile.gender ?? "female");
     setPartnerGender(profile.partner_gender ?? "male");
@@ -75,6 +78,7 @@ function SettingsPage() {
       .from("profiles")
       .update({
         full_name: fullName,
+        username: username.trim() || null,
         email,
         gender,
         partner_gender: partnerGender,
@@ -109,6 +113,10 @@ function SettingsPage() {
         <div className="space-y-2">
           <Label htmlFor="name">Full Name</Label>
           <Input id="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="username">Username</Label>
+          <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div className="space-y-2">
           <Label htmlFor="settings-email">Email</Label>
@@ -171,6 +179,7 @@ function SettingsPage() {
       </div>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }

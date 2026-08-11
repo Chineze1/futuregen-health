@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Download, Mail, MessageCircle, Smartphone } from "lucide-react";
 import { toast } from "sonner";
+import { AppFooter } from "@/components/AppFooter";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { RequireAuth } from "@/components/RequireAuth";
@@ -165,6 +166,7 @@ function SharePage() {
       </section>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }

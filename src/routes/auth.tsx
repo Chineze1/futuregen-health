@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { AppFooter } from "@/components/AppFooter";
 import { lovable } from "@/integrations/lovable/index";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -56,6 +57,7 @@ function AuthPage() {
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [loading, setLoading] = useState(false);
   const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -79,12 +81,16 @@ function AuthPage() {
           toast.error("Passwords do not match");
           return;
         }
+        if (!username.trim()) {
+          toast.error("Username is required");
+          return;
+        }
         const { error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             emailRedirectTo: window.location.origin,
-            data: { full_name: fullName },
+            data: { full_name: fullName, username: username.trim() },
           },
         });
         if (error) throw error;
@@ -182,6 +188,19 @@ function AuthPage() {
             </div>
           ) : null}
 
+          {mode === "signup" ? (
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="johnsmith"
+                required
+              />
+            </div>
+          ) : null}
+
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -257,6 +276,8 @@ function AuthPage() {
             {mode === "login" ? "Sign in with Google" : "Sign up with Google"}
           </Button>
         </form>
+
+        <AppFooter />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AppFooter } from "@/components/AppFooter";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import {
@@ -62,6 +63,7 @@ function HelpPage() {
       </Accordion>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }

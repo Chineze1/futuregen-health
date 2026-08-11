@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Star } from "lucide-react";
 import { toast } from "sonner";
+import { AppFooter } from "@/components/AppFooter";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
@@ -84,6 +85,7 @@ function RatePage() {
       </section>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
