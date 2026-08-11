@@ -112,17 +112,28 @@ function AuthPage() {
 
   async function handleGoogle() {
     setLoading(true);
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
-    });
-    if (result.error) {
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: `${window.location.origin}/oauth-callback`,
+        extraParams: { prompt: "select_account" },
+      });
+
+      if (result.error) {
+        toast.error(result.error.message || "Google sign-in failed. Please try again.");
+        return;
+      }
+      // Full-page redirect in progress — /oauth-callback finishes the sign-in.
+      if (result.redirected) return;
+
+      toast.success("Signed in with Google");
+      navigate({ to: "/" });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Google sign-in failed");
+    } finally {
       setLoading(false);
-      toast.error("Google sign-in failed. Please try again.");
-      return;
     }
-    if (result.redirected) return;
-    navigate({ to: "/" });
   }
+
 
   async function handleForgotPassword() {
     if (!email) {
