@@ -115,6 +115,10 @@ function SettingsPage() {
           <Input id="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
         </div>
         <div className="space-y-2">
+          <Label htmlFor="username">Username</Label>
+          <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>
+        <div className="space-y-2">
           <Label htmlFor="settings-email">Email</Label>
           <Input
             id="settings-email"
