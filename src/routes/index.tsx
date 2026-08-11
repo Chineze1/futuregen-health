@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ShieldCheck, Sparkles } from "lucide-react";
+import { AppFooter } from "@/components/AppFooter";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { GenotypePills } from "@/components/GenotypePills";
