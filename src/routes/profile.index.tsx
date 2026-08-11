@@ -112,6 +112,7 @@ function ProfilePage() {
       </Button>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
