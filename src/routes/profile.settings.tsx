@@ -179,6 +179,7 @@ function SettingsPage() {
       </div>
 
       <BottomNav />
+      <AppFooter />
     </div>
   );
 }
